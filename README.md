@@ -97,3 +97,15 @@ sudo firewall-cmd --list-all
 ```
 sudo firewall-cmd --zone=public --remove-service=ssh --permanent
 ```
+```
+sudo firewall-cmd --reload
+```
+```
+sudo firewall-cmd --list-all
+```
+
+- (補足)firewallのゾーン(適用範囲)を確認する：```public:```の下にwifiのIDがあれば良い(例：wlp0s20f3のように、wlから始まる文字列)
+
+```
+sudo firewall-cmd --get-active-zones
+```
