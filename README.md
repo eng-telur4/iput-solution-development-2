@@ -71,10 +71,10 @@ PasswordAuthentication yes
 sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="<WindowsPCのIPアドレス>" service name="ssh" accept' --permanent
 ```
 ```
-sudo firewall-cmd --zone=public --reload
+sudo firewall-cmd --reload
 ```
 ```
-sudo firewall-cmd --zone=public --list-all
+sudo firewall-cmd --list-all
 ```
 
 - WindowsPCのIPアドレスを更新するとき
@@ -86,8 +86,8 @@ sudo firewall-cmd --zone=public --remove-rich-rule='rule family="ipv4" source ad
 sudo firewall-cmd --zone=public --add-rich-rule='rule family="ipv4" source address="<WindowsPCのIPアドレス>" service name="ssh" accept' --permanent
 ```
 ```
-sudo firewall-cmd --zone=public --reload
+sudo firewall-cmd --reload
 ```
 ```
-sudo firewall-cmd --zone=public --list-all
+sudo firewall-cmd --list-all
 ```
