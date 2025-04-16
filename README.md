@@ -91,3 +91,9 @@ sudo firewall-cmd --reload
 ```
 sudo firewall-cmd --list-all
 ```
+
+-- SSH接続全体の許可をなくす
+
+```
+sudo firewall-cmd --zone=public --remove-service=ssh --permanent
+```
