@@ -128,9 +128,11 @@ sudo firewall-cmd --zone=public --list-rich-rules | while read -r rule; do
 done
 
 # 指定されたIPのルールを個別に削除（念のため）
-sudo firewall-cmd --zone=public --remove-rich-rule="rule family='ipv4' source address='$IP' service name='ssh' accept" --permanent
+sudo firewall-cmd --zone=public --add-rich-rule="rule family='ipv4' source address='$IP' service name='ssh' accept" --permanent
 
 # 設定反映
 sudo firewall-cmd --reload
 
+# 設定確認
+sudo firewall-cmd --list-all
 ```
