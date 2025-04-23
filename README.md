@@ -110,29 +110,59 @@ sudo firewall-cmd --list-all
 sudo firewall-cmd --get-active-zones
 ```
 
+## 毎回のPC接続時
+
+### 1. SSH接続用のIPアドレスの設定
+
 ```sh
 #!/bin/bash
 
-# 第1引数をIPアドレスとして受け取る
-IP="$1"
-
-if [ -z "$IP" ]; then
-    echo "使い方: $0 <IPアドレス>"
+# IPアドレスが指定されていない場合は終了
+if [ "$#" -eq 0 ]; then
+    echo "使い方: $0 <IPアドレス1> [<IPアドレス2> ...]"
     exit 1
 fi
 
-# すべてのリッチルールを削除
+# すべての既存リッチルールを削除
 sudo firewall-cmd --zone=public --list-rich-rules | while read -r rule; do
     echo "Removing: $rule"
     sudo firewall-cmd --zone=public --remove-rich-rule="$rule" --permanent
 done
 
-# 指定されたIPのルールを個別に削除（念のため）
-sudo firewall-cmd --zone=public --add-rich-rule="rule family='ipv4' source address='$IP' service name='ssh' accept" --permanent
+# 引数で指定されたすべてのIPに対してルールを追加
+for IP in "$@"; do
+    echo "Adding rule for $IP"
+    sudo firewall-cmd --zone=public --add-rich-rule="rule family='ipv4' source address='$IP' service name='ssh' accept" --permanent
+done
 
-# 設定反映
+# 設定を反映
 sudo firewall-cmd --reload
 
-# 設定確認
+# 最終的な設定を確認
 sudo firewall-cmd --list-all
+```
+
+### 2. 有線LANのIPアドレス
+
+- 以下のコマンドをクライアント側（送信側）で実行し、プライベートIP「192.168.1.10/24」にする
+
+```sh
+sudo nmcli con mod enp0s31f6 ipv4.method manual ipv4.addresses 192.168.1.10/24
+sudo nmcli con mod enp0s31f6 ipv4.dns ""
+sudo nmcli con up enp0s31f6
+```
+
+- 以下のコマンドをサーバ側（受信側）で実行し、プライベートIP「192.168.1.20/24」にする
+
+```sh
+sudo nmcli con mod enp0s31f6 ipv4.method manual ipv4.addresses 192.168.1.20/24
+sudo nmcli con mod enp0s31f6 ipv4.dns ""
+sudo nmcli con up enp0s31f6
+```
+
+- 以下のコマンドをクライアント・サーバ側両方で実行し、有線LANのIPアドレスがしっかりと設定をされていることを確認する
+
+```sh
+ip a
+hostname -I
 ```
