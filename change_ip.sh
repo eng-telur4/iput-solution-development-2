@@ -1,24 +1,25 @@
 #!/bin/bash
 
-# 第1引数をIPアドレスとして受け取る
-IP="$1"
-
-if [ -z "$IP" ]; then
-    echo "使い方: $0 <IPアドレス>"
+# IPアドレスが指定されていない場合は終了
+if [ "$#" -eq 0 ]; then
+    echo "使い方: $0 <IPアドレス1> [<IPアドレス2> ...]"
     exit 1
 fi
 
-# すべてのリッチルールを削除
+# すべての既存リッチルールを削除
 sudo firewall-cmd --zone=public --list-rich-rules | while read -r rule; do
     echo "Removing: $rule"
     sudo firewall-cmd --zone=public --remove-rich-rule="$rule" --permanent
 done
 
-# 指定されたIPのルールを個別に削除（念のため）
-sudo firewall-cmd --zone=public --add-rich-rule="rule family='ipv4' source address='$IP' service name='ssh' accept" --permanent
+# 引数で指定されたすべてのIPに対してルールを追加
+for IP in "$@"; do
+    echo "Adding rule for $IP"
+    sudo firewall-cmd --zone=public --add-rich-rule="rule family='ipv4' source address='$IP' service name='ssh' accept" --permanent
+done
 
-# 設定反映
+# 設定を反映
 sudo firewall-cmd --reload
 
-# 設定確認
+# 最終的な設定を確認
 sudo firewall-cmd --list-all
