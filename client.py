@@ -1,19 +1,15 @@
-# server.py
+# Send side
 import socket
 
-HOST = '192.168.1.20'  # サーバ側のIP
-PORT = 50001           # 適当な非Well-knownポート番号
+SEND_ID = '192.168.1.20'    # 受信PCのIPアドレス
+SEND_PORT = 50001           # 受信PCのポート番号
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen(1)
-    print(f"Server listening on {HOST}:{PORT}")
-    conn, addr = s.accept()
-    with conn:
-        print(f"Connected by {addr}")
-        while True:
-            data = conn.recv(1024)
-            if not data:
-                break
-            print("Received:", data.decode())
-            conn.sendall(data)
+    s.connect((SEND_ID, SEND_PORT))
+    print("Connected to server.")
+    
+    while True:
+        message = input("Send to server: ")
+        s.sendall(message.encode())
+        data = s.recv(1024)
+        print("Received:", data.decode())
