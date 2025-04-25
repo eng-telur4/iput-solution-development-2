@@ -1,21 +1,19 @@
-# Server : Receive side
+# server.py
 import socket
 
-HOST = '0.0.0.0'  # Listen on all network interfaces
-PORT = 12345      # Any port above 1024
+HOST = '192.168.1.20'  # サーバ側のIP
+PORT = 50001           # 適当な非Well-knownポート番号
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen(1)
-    print(f"Server listening on port {PORT}...")
-
+    print(f"Server listening on {HOST}:{PORT}")
     conn, addr = s.accept()
     with conn:
-        print('Connected by', addr)
+        print(f"Connected by {addr}")
         while True:
             data = conn.recv(1024)
             if not data:
                 break
             print("Received:", data.decode())
-            response = input("Reply to client: ")
-            conn.sendall(response.encode())
+            conn.sendall(data)
