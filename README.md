@@ -33,6 +33,10 @@ ALMALINUX_MANTISBT_PROJECT_VERSION="9.6"
 REDHAT_SUPPORT_PRODUCT="AlmaLinux"
 REDHAT_SUPPORT_PRODUCT_VERSION="9.6"
 SUPPORT_END=2032-06-01
+[skamijo@localhost ~]$ python -V
+Python 3.9.21
+[skamijo@localhost ~]$ python3 -V
+Python 3.9.21
 ```
 
 ## AlmaLinux初期設定
