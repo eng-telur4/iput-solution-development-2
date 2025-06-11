@@ -1,5 +1,17 @@
 # iput-solution-development-2
 
+## 動作環境
+
+- ハードウェアモデル：NEC PC-VRT16FBGS3R6
+- メモリ 7.4 GiB
+- プロセッサー：Intel Core i5-8265U CPU @ 1.60Hz × 8
+- グラフィック：Mesa Intel UHD Graphics 620 (WH GT2)
+- ディスク容量：500.1 GB
+- OS名：AlmaLinux 9.6 (Sage Margay)
+- OSの種類：64ビット
+- GNOMEのバージョン：40.4.0
+- ウィンドウシステム：Wayland
+
 ## AlmaLinux初期設定
 
 ### 1. パッケージのアップデート
