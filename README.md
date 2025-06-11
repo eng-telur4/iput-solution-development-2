@@ -37,34 +37,11 @@ REDHAT_SUPPORT_PRODUCT_VERSION="9.6"
 SUPPORT_END=2032-06-01
 ```
 
-- others
+- uname -a
 
-```
-[skamijo@localhost ~]$ python -V
-Python 3.9.21
-[skamijo@localhost ~]$ python3 -V
-Python 3.9.21
-[skamijo@localhost ~]$ sudo firewall-cmd --version
-1.3.4
-[skamijo@localhost ~]$ ibus version
-IBus 1.5.25
-[skamijo@localhost ~]$ vim --version
-VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Feb 25 2025 00:00:00)
+```sh
 [skamijo@localhost ~]$ uname -a
 Linux localhost.localdomain 5.14.0-570.18.1.el9_6.x86_64 #1 SMP PREEMPT_DYNAMIC Tue May 27 21:47:45 EDT 2025 x86_64 x86_64 x86_64 GNU/Linux
-[skamijo@localhost ~]$ bash --version
-GNU bash, バージョン 5.1.8(1)-release (x86_64-redhat-linux-gnu)
-Copyright (C) 2020 Free Software Foundation, Inc.
-ライセンス GPLv3+: GNU GPL バージョン 3 またはそれ以降 <http://gnu.org/licenses/gpl.html>
-
-This is free software; you are free to change and redistribute it.
-There is NO WARRANTY, to the extent permitted by law.
-[skamijo@localhost ~]$ sudo nmcli --version
-nmcli ツール、バージョン 1.52.0-3.el9_6
-[skamijo@localhost ~]$ ip -Version
-ip utility, iproute2-6.11.0, libbpf 1.5.0
-[skamijo@localhost ~]$ hostname --version
-hostname 3.23
 ```
 
 - /proc/cpuinfo
@@ -394,6 +371,34 @@ LISTEN          0               128                                [::]:ssh
  6月 11 12:41:08 localhost.localdomain sudo[4674]:  skamijo : TTY=pts/0 ; PWD=/home/skamijo ; USER=root ; COMMAND=/bin/nmcli ->
  6月 11 12:41:08 localhost.localdomain sudo[4674]: pam_unix(sudo:session): session opened for user root(uid=0) by skamijo(uid=>
  6月 11 12:41:08 localhost.localdomain sudo[4674]: pam_unix(sudo:session): session closed for user root
+```
+
+- others
+
+```
+[skamijo@localhost ~]$ python -V
+Python 3.9.21
+[skamijo@localhost ~]$ python3 -V
+Python 3.9.21
+[skamijo@localhost ~]$ sudo firewall-cmd --version
+1.3.4
+[skamijo@localhost ~]$ ibus version
+IBus 1.5.25
+[skamijo@localhost ~]$ vim --version
+VIM - Vi IMproved 8.2 (2019 Dec 12, compiled Feb 25 2025 00:00:00)
+[skamijo@localhost ~]$ bash --version
+GNU bash, バージョン 5.1.8(1)-release (x86_64-redhat-linux-gnu)
+Copyright (C) 2020 Free Software Foundation, Inc.
+ライセンス GPLv3+: GNU GPL バージョン 3 またはそれ以降 <http://gnu.org/licenses/gpl.html>
+
+This is free software; you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+[skamijo@localhost ~]$ sudo nmcli --version
+nmcli ツール、バージョン 1.52.0-3.el9_6
+[skamijo@localhost ~]$ ip -Version
+ip utility, iproute2-6.11.0, libbpf 1.5.0
+[skamijo@localhost ~]$ hostname --version
+hostname 3.23
 ```
 
 ## AlmaLinux初期設定
