@@ -38,7 +38,6 @@ SUPPORT_END=2032-06-01
 Python 3.9.21
 [skamijo@localhost ~]$ python3 -V
 Python 3.9.21
-
 [skamijo@localhost ~]$ sudo firewall-cmd --version
 1.3.4
 [skamijo@localhost ~]$ ibus version
